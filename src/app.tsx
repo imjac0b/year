@@ -21,7 +21,11 @@ const getDayOfYear = (date: Date): number => {
 const showDaysPassed = signal(false);
 
 export function App() {
-  const year = computed(() => new Date().getFullYear());
+  const year = computed(() => {
+    const year = new Date().getFullYear();
+    document.title = `${year} - Year`;
+    return year;
+  });
   const daysInYear = computed(() => (isLeapYear(year.value) ? 366 : 365));
   const daysPassed = computed(() => getDayOfYear(new Date()));
   const daysLeft = computed(() => daysInYear.value - daysPassed.value);
